@@ -23,5 +23,4 @@ before_install:
 
 script:
   - git clone https://$GH_TOKEN@github.com/$REPO_OWNER_NAME/$TRAVIS_BRANCH
-  - ls -l
-  - travis_retry docker run -v $PWD:/src -v $HOME/.m2:/root/.m2 moussavdb/build-graalvm-arm64 mvn package
+  - travis_retry docker run -v $TRAVIS_BRANCH:$TRAVIS_BRANCH -v $HOME/.m2:/root/.m2 moussavdb/build-graalvm-arm64 mvn -f $TRAVIS_BRANCH/pom.xml package
